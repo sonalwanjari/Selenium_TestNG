@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Include Exclude Testing">
+    <test name="TestNG Demo">
+        <classes>
+            <class name="TestNG.IncludeExclude">
+                <methods>
+                    <include name="loginTest"/>
+                    <include name="registrationTest"/>
+                    <exclude name="logoutTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

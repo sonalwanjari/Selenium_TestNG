@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Day18AssertionsSuite">
+    <test name="Assertions Tests">
+        <classes>
+<class name="TestNG.HardAssertionTest"/>
+<class name="TestNG.SoftAssertionTest"/>
+        </classes>
+    </test>
+</suite>

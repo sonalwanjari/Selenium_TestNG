@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNG_Assignment">
+
+    <!-- Parameter for tests -->
+<!--<parameter name="url" value="https://www.github.com"/>-->
+    <parameter name="username" value="Sonal123"/>
+    <parameter name="password" value="Test@123"/>
+    <!-- Run all tests -->
+    <test name="All_Tests">
+        <classes>
+            <class name="TestNG.DemoAllAttributes"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MyTestSuite">
+
+    <!-- Add Reporter -->
+    <listeners>
+        <listener class-name="TestNG.MyTestListener"/>
+        <listener class-name="TestNG.CustomReporter"/>
+    </listeners>
+
+    <test name="MySampleTest">
+        <classes>
+            <class name="TestNG.SampleTestReporter"/>
+        </classes>
+    </test>
+</suite>
+
