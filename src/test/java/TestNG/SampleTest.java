@@ -2,7 +2,6 @@ package TestNG;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,8 +11,17 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class SampleTest {
 
     private WebDriver driver;
+    private final int testParam; // value provided by Factory
 
-    // removed the parameterized constructor — TestNG needs a public no-arg constructor
+    // add a public constructor that accepts the int that FactoryDemo passes
+    public SampleTest(int i) {
+        this.testParam = i;
+    }
+
+    // also keep a no-arg constructor only if you need one; not required for Factory usage
+    public SampleTest() {
+        this.testParam = -1; // or some default
+    }
 
     @BeforeMethod
     public void setUp() {
@@ -26,15 +34,11 @@ public class SampleTest {
         driver = new ChromeDriver(options);
     }
 
-    @DataProvider(name = "numbers")
-    public Object[][] numbers() {
-        return new Object[][] { {10}, {20} };
-    }
-
-    @Test(dataProvider = "numbers")
-    public void testMethod(int param) {
+    // remove DataProvider usage if Factory provides parameters
+    @Test
+    public void testMethod() {
         driver.get("https://www.google.com");
-        System.out.println("param: " + param + " title: " + driver.getTitle());
+        System.out.println("param: " + testParam + " title: " + driver.getTitle());
     }
 
     @AfterMethod
