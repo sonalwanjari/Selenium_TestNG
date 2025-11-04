@@ -24,7 +24,14 @@ public class SoftAssertionTest {
             String actualTitle = driver.getTitle();
             System.out.println("Actual Title: \"" + actualTitle + "\"");
 
-            String expectedTitle = "LinkedIn3ed: Log In or Sign Up";
+//String expectedTitle = "LinkedIn3ed: Log In or Sign Up";
+
+        // before
+//softAssert.assertEquals(actualTitle, "LinkedIn3ed: Log In or Sign Up");
+
+// after
+softAssert.assertEquals(actualTitle, "LinkedIn: Log In or Sign Up");
+
 
             // Soft assertion: will not stop execution even if it fails
             softAssert.assertEquals(actualTitle, expectedTitle,
