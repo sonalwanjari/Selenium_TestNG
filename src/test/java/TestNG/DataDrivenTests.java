@@ -55,8 +55,8 @@ public class DataDrivenTests {
     }
 
     // 7c. dataProviderClass - using external data provider
-    @Test(dataProvider = "externalData", dataProviderClass = DataProvider.class)
-    public void externalDataTest(String data) {
+  @Test(dataProvider = "externalData", dataProviderClass = TestDataProviders.class)
+public void externalDataTest(String data) {
         driver.get("https://www.google.com/ncr");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.name("q")));
         driver.findElement(By.name("q")).sendKeys(data);
