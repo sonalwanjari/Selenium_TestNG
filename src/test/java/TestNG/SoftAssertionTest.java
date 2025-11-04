@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import static SeleniumDemos.August19.BaseTest.driver;
+import static org.testng.Assert.assertTrue;
 
 public class SoftAssertionTest {
 

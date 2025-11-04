@@ -36,3 +36,20 @@ build/
 
 ### Mac OS ###
 .DS_Store
+# java and maven
+*.class
+*.log
+*.jar
+
+# IntelliJ
+.idea/
+out/
+
+# test reports and local settings
+test-output/
+reports/
+*.local
+*.properties
+
+# OS
+Thumbs.db
