@@ -1,50 +1,52 @@
 package TestNG;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-import static org.testng.Assert.assertTrue;
 
 public class SoftAssertionTest {
 
-@Test
-    public void checkPageTitleExact() {
+    private WebDriver driver;
+
+    @BeforeMethod
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        // Use headless for CI; remove headless when debugging locally if you want to see the browser
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        driver = new ChromeDriver(options);
+    }
 
-        SoftAssert softAssert = new SoftAssert();
+    @Test
+    public void checkPageTitleExact() {
+        driver.get("https://www.linkedin.com");
 
-        driver.get("https://www.linkedin.com/");
-            System.out.println("Starting soft assertion test (exact match)");
+        SoftAssert soft = new SoftAssert();
 
-            String actualTitle = driver.getTitle();
-            System.out.println("Actual Title: \"" + actualTitle + "\"");
+        // actual title
+        String actualTitle = driver.getTitle();
 
-//String expectedTitle = "LinkedIn3ed: Log In or Sign Up";
+        // define expectedTitle variable so compilation succeeds
+        String expectedTitle = "LinkedIn: Log In or Sign Up";
 
-        // before
-//softAssert.assertEquals(actualTitle, "LinkedIn3ed: Log In or Sign Up");
+        // Strict exact-match assertion (will fail if text differs exactly)
+        soft.assertEquals(actualTitle, expectedTitle, "Page title did not exactly match expected");
 
-// after
-softAssert.assertEquals(actualTitle, "LinkedIn: Log In or Sign Up");
+        // Alternative (more tolerant) — uncomment to use contains check instead
+        // soft.assertTrue(actualTitle != null && actualTitle.contains("LinkedIn"), "Page title should contain 'LinkedIn'");
 
+        // Report all soft assertion failures
+        soft.assertAll();
+    }
 
-            // Soft assertion: will not stop execution even if it fails
-            softAssert.assertEquals(actualTitle, expectedTitle,
-                    "Page title did not exactly match expected");
-
-            System.out.println("This line still executes even if the assertion fails");
-
-            // Collect & report all soft assertion failures at the end
-            softAssert.assertAll();
-
-            System.out.println("Soft assertion passed, test continued...");
-
-       {
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
             driver.quit();
         }
     }
