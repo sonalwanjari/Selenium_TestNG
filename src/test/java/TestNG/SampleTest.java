@@ -13,8 +13,7 @@ public class SampleTest {
 
     private WebDriver driver;
 
-    public SampleTest(int i) {
-    }
+    // removed the parameterized constructor — TestNG needs a public no-arg constructor
 
     @BeforeMethod
     public void setUp() {
